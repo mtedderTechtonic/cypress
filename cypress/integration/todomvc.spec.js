@@ -5,8 +5,10 @@ it('should navigate to the TodoMvC App', () => {
 })
 
 
-it('should be able to add a new todo to the list', () => {
+it('should be able to add a new todo to the list and mark it as complete', () => {
     cy.visit('http://todomvc-app-for-testing.surge.sh/?delay-new-todo=5000')
 
     cy.get('.new-todo', {timeout: 6000}).type("Clean room{enter}") // command chaining
+
+    cy.get('.toggle').click()
 })
