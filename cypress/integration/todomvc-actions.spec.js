@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { navigate, addToDo, validateTodoTxt } from "../page-objects/todo-page"
+
 describe('cypress documentation', () => {
     it('does not do much!', () => {
         expect(true).to.equal(true)
@@ -7,13 +9,15 @@ describe('cypress documentation', () => {
 })
 
 describe('todo actions', () => {
+
     beforeEach(() => {
-        cy.visit('http://todomvc-app-for-testing.surge.sh/')
-        cy.get('.new-todo', {timeout: 3000}).type("Clean room{enter}") // command chaining
+        navigate() // using page objects
+
+        addToDo('Clean room') // using page objects
     })
     it('should add a new todo to the list', () => {
         
-        cy.get('label').should('have.text', 'Clean room') // use cypress' should method to validate tests
+        validateTodoTxt(0, 'Clean room')
         cy.get('.toggle').should('not.be.checked')
     })
     
